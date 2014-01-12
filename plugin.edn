@@ -1,0 +1,5 @@
+{:name "OCaml"
+ :author "Mads Hartmann"
+ :source "https://github.com/mads379/lt-ocaml"
+ :desc "LightTable support for OCaml."
+ :behaviors "ocaml.behaviors"}
