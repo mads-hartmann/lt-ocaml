@@ -1,18 +1,34 @@
-To build the plugin:
+# OCaml Plugin for LightTable
 
-* Clone the repo into your plugins folder
-  * On OS X: `~/Library/Application Support/LightTable/plugins/`
-  * On Linux: `~/.config/LightTable/plugins/`
-  * On Windows: `%APPDATALOCAL%/LightTable/plugins/`
-* Open [declassifier.cljs](https://github.com/LightTable/LightTable-Declassifier/blob/master/src/lt/plugins/declassifier.cljs)
-* Connect an nrepl client to the [project.clj](https://github.com/LightTable/LightTable-Declassifier/blob/master/project.clj)
-* Run the command `Editor: Build file or project` (you should see "Compiled plugin to ...declassifer_compiled.js" in the statusbar)
+Currently there's not much to see here. For now it really
+doesn't do anything - I'm using it to learn how the various
+components of LightTable work together.
 
-To load/reload the plugin:
+Whenever I figure out how something works I try to create
+a minimal example and put it on a branch. Here's what I have
+so far
+
+* [Connecting and communicating with a TCP server](https://github.com/mads379/lt-ocaml/tree/ehco-server-example)
+
+## Installing it
+
+For now I assume that you're on OS X given that it's the
+only platform I've tested this on.
+
+To install it clone the project to
+`~/Library/Application Support/LightTable/plugins/`
+
+To load the plugin:
 
 * Run the command `Plugins: Refresh plugin list`
 * Run the command `App: Reload behaviors`
 
-The plugin will also be loaded on restarting Light Table.
+## Try it out
 
-Important files are [plugin.edn](https://github.com/LightTable/LightTable-Declassifier/blob/master/plugin.edn), which contains metadata about the plugin and also points to the behaviors file.  The behaviors listed in [declassifier.behaviors](https://github.com/LightTable/LightTable-Declassifier/blob/master/declassifier.behaviors) are loaded by the plugin manager. Most plugins will contain at least `{:+ {:app [(:lt.objs.plugins/load-js "declassifier_compiled.js" true)]}}` in order to load code into Light Table.
+Open a OCaml file (uses extension `.ml`) write
+something and hit `cmd-enter`. You might have to run
+`App: Reload behaviors` first.
+
+## Hacking on it
+
+The eaiest way to work on a plugin is to open ocaml.cljs and evaluate the code straight from the editior. You have to connect to the LightTable UI for it to work.
