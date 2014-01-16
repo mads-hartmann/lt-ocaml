@@ -1,1 +1,13 @@
-{:+ {:app [(:lt.objs.plugins/load-js "ocaml_compiled.js" true)] }}
+{:+ {:app [(:lt.objs.plugins/load-js "ocaml_compiled.js" true)]
+
+     :clients []
+
+     :editor.ocaml [:lt.objs.langs.ocaml/on-eval.one
+                    :lt.objs.langs.ocaml/ocaml-result]
+
+     :files [(:lt.objs.files/file-types [{:name "OCaml"
+                                          :exts [:ml]
+                                          :mime "text/x-ocaml"
+                                          :tags [:editor.ocaml]}])]
+
+     :ocaml.lang [:lt.objs.langs.ocaml/eval! :lt.objs.langs.ocaml/connect]}}

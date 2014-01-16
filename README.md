@@ -1,18 +1,24 @@
-To build the plugin:
+# Echo-server Example
 
-* Clone the repo into your plugins folder
-  * On OS X: `~/Library/Application Support/LightTable/plugins/`
-  * On Linux: `~/.config/LightTable/plugins/`
-  * On Windows: `%APPDATALOCAL%/LightTable/plugins/`
-* Open [declassifier.cljs](https://github.com/LightTable/LightTable-Declassifier/blob/master/src/lt/plugins/declassifier.cljs)
-* Connect an nrepl client to the [project.clj](https://github.com/LightTable/LightTable-Declassifier/blob/master/project.clj)
-* Run the command `Editor: Build file or project` (you should see "Compiled plugin to ...declassifer_compiled.js" in the statusbar)
+While developing this plugin I first created a prototype
+to understand how to start a server and communicate with
+it from within LightTable.
 
-To load/reload the plugin:
+Because I thought that this example might be useful for
+other newbie LightTable plugin developers I stored the
+example here on this branch before extending it furhter.
 
-* Run the command `Plugins: Refresh plugin list`
-* Run the command `App: Reload behaviors`
+This code shows how to start a background process and how
+to communicate with it. Additionally it shows how to display
+results inline in the editor.
 
-The plugin will also be loaded on restarting Light Table.
+* `py-src/echo-server.py` contains the TCP server
+* `src/lt/plugins/ocaml.cljs` contains the actual plugin code
 
-Important files are [plugin.edn](https://github.com/LightTable/LightTable-Declassifier/blob/master/plugin.edn), which contains metadata about the plugin and also points to the behaviors file.  The behaviors listed in [declassifier.behaviors](https://github.com/LightTable/LightTable-Declassifier/blob/master/declassifier.behaviors) are loaded by the plugin manager. Most plugins will contain at least `{:+ {:app [(:lt.objs.plugins/load-js "declassifier_compiled.js" true)]}}` in order to load code into Light Table.
+The eaiest way to work on a plugin is to open `ocaml.cljs`
+and evaluate the code straight from the editior. You have
+to connect to the LightTable UI for it to work.
+
+Happy Hacking,
+Mads
+
