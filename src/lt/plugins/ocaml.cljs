@@ -14,7 +14,10 @@
             [lt.objs.console :as console])
   (:require-macros [lt.macros :refer [behavior]]))
 
-;; TODO: Figure out what this is good for.
+;;
+;; This declares a new type of object called "ocaml-lang" and also lets you asign things to it;
+;; in your case a set of with just a tag.
+;;
 (object/object* ::ocaml-lang
                 :tags #{:ocaml.lang})
 
@@ -29,8 +32,11 @@
 (def echo-server-path
   (let [dir plugins/*plugin-dir*]
       (if (nil? dir)
-        "'/Users/hartmann/Library/Application Support/LightTable/plugins/lt-ocaml/py-src/echo-server.py'"
-        (files/join dir "py-src/echo-server.py")
+        ; Instead of harcoding your path there you can use plugins/plugins-dir which always works.
+        ; Also let files do its magic (forward/backwards slashes and such..).
+        ;"'/Users/hartmann/Library/Application Support/LightTable/plugins/lt-ocaml/py-src/echo-server.py'"
+        ;(files/join dir "py-src/echo-server.py")
+        (files/join plugins/plugins-dir "lt-ocaml" "py-src" "echo-server.py")
     )))
 
 (def ocaml (object/create ::ocaml-lang))
